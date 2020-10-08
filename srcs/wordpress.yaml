@@ -1,39 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: wordpress
   labels:
-    app: nginx
+    app: wordpress
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: wordpress
   template:
     metadata:
       labels:
-        app: nginx
+        app: wordpress
     spec:
       containers:
-      - name: nginx
-        image: nginx
+      - name: wordpress
+        image: wordpress
         imagePullPolicy: Never
         ports:
-        - containerPort: 80
-          name: http
-        - containerPort: 443
-          name: https
+        - containerPort: 5050
+          name: wordpress
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name: wordpress
 spec:
   selector:
-    app: nginx
+    app: wordpress
   ports:
-  - name: http
-    port: 80
-  - name: https
-    port: 443
+  - name: wordpress
+    port: 5050
   type: LoadBalancer
