@@ -20,15 +20,30 @@ kubectl apply -f srcs/serviceaccount.yaml
 
 # Creating nginx:
 
-docker build -t nginx srcs/nginx/
+docker build -t my_nginx srcs/nginx/
 kubectl apply -f srcs/nginx.yaml
 
 # Creating ftps:
 
-docker build -t ftps srcs/ftps/
+docker build -t my_ftps srcs/ftps/
 kubectl apply -f srcs/ftps.yaml
 
-# Creating wordress:
+# Creating mysql:
 
-docker build -t wordpress srcs/wordpress/
+docker build -t my_mysql srcs/mysql/
+kubectl apply -f srcs/mysql.yaml
+
+# Creating phpmyadmin:
+
+docker build -t my_phpmyadmin srcs/phpmyadmin/
+kubectl apply -f srcs/phpmyadmin.yaml
+
+# Creating wordpress:
+
+docker build -t my_wordpress srcs/wordpress/
 kubectl apply -f srcs/wordpress.yaml
+
+# Creating grafana:
+
+# docker build -t my_grafana srcs/grafana/
+# kubectl apply -f srcs/grafana.yaml
