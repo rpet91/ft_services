@@ -1,34 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wordpress
+  name: mysql
   labels:
-    app: wordpress
+    app: mysql
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: wordpress
+      app: mysql
   template:
     metadata:
       labels:
-        app: wordpress
+        app: mysql
     spec:
-      serviceAccount: remco
       containers:
-      - name: wordpress
-        image: my_wordpress
+      - name: mysql
+        image: my_mysql
         imagePullPolicy: Never
         ports:
-        - containerPort: 5050
-          name: wordpress
+        - containerPort: 3306
+          name: mysql
         env:
-        - name: DB_HOST
-          value: mysql
         - name: DB_NAME
           value: remco
         - name: DB_USER
-          value: wordpress
+          value: mysql
         - name: DB_PASS
           value: kaas
 ---
@@ -37,14 +34,13 @@ kind: Service
 metadata:
   annotations:
       metallb.universe.tf/allow-shared-ip: shared
-  name: wordpress
+  name: mysql
   labels:
-      app: wordpress
+      app: mysql
 spec:
   selector:
-    app: wordpress
+    app: mysql
   ports:
-  - name: wordpress
-    protocol: TCP
-    port: 5050
+  - name: mysql
+    port: 3306
   type: LoadBalancer

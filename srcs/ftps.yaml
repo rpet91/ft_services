@@ -17,7 +17,7 @@ spec:
       serviceAccount: remco
       containers:
       - name: ftps
-        image: ftps
+        image: my_ftps
         imagePullPolicy: Never
         ports:
         - containerPort: 20
@@ -34,7 +34,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  annotations:
+      metallb.universe.tf/allow-shared-ip: shared
   name: ftps
+  labels:
+      app: ftps
 spec:
   selector:
     app: ftps
