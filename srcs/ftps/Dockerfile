@@ -20,8 +20,8 @@ RUN chmod +x ftp/setup.sh
 EXPOSE 20 21 10000 10001 10002
 
 #debugger command
-RUN apk add vim
-CMD tail -f /dev/null
+#RUN apk add vim
+#CMD tail -f /dev/null
 
 #working command
-#CMD /ftp/setup.sh
+CMD /ftp/setup.sh

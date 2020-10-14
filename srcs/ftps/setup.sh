@@ -16,4 +16,4 @@ URL=$(curl --cacert ${CACERT} --header "Authorization: Bearer ${TOKEN}" -X GET $
 
 echo "pasv_address=$URL" >> etc/vsftpd/vsftpd.conf
 
-#vsftpd etc/vsftpd/vsftpd.conf
+vsftpd etc/vsftpd/vsftpd.conf
