@@ -13,8 +13,8 @@ RUN adduser -D -g 'www' www && \
 
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/rem.key -out /etc/ssl/rem.crt -subj '/C=NL/ST=Noord-Holland/L=Amsterdam/O=Codam/CN=ft_services'
 
-COPY nginx.conf etc/nginx/nginx.conf
-COPY index.html www/
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY index.html /www/
 
 EXPOSE 80 443
 
