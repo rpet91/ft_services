@@ -43,7 +43,17 @@ kubectl apply -f srcs/phpmyadmin.yaml
 docker build -t my_wordpress srcs/wordpress/
 kubectl apply -f srcs/wordpress.yaml
 
+# Creating influxdb:
+
+docker build -t my_influxdb srcs/influxdb/
+kubectl apply -f srcs/influxdb.yaml
+
 # Creating grafana:
 
-# docker build -t my_grafana srcs/grafana/
-# kubectl apply -f srcs/grafana.yaml
+docker build -t my_grafana srcs/grafana/
+kubectl apply -f srcs/grafana.yaml
+
+# Creating telegraf:
+
+#docker build -t my_telegraf srcs/telegraf/
+#kubectl apply -f srcs/telegraf.yaml
