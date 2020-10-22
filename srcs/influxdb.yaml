@@ -21,6 +21,13 @@ spec:
         ports:
         - containerPort: 8086
           name: influxdb
+        volumeMounts:
+        - name: influxdb-persistent
+          mountPath: /var/lib/influxdb
+      volumes:
+      - name: influxdb-persistent
+        persistentVolumeClaim:
+          claimName: influxdb-pv-claim
 ---
 apiVersion: v1
 kind: Service
@@ -37,3 +44,16 @@ spec:
   - name: influxdb
     port: 8086
   type: ClusterIP
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: influxdb-pv-claim
+  labels:
+    app: influxdb
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi

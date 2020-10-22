@@ -29,3 +29,5 @@ $cfg['Servers'][$i]['password'] = 'kaas';
  */
 $cfg['UploadDir'] = '';
 $cfg['SaveDir'] = '';
+
+$cfg['TempDir'] = '/tmp';

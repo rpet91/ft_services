@@ -11,5 +11,16 @@ wp db create
 wp core install --url=${URL}:5050 --title=wordpress --admin_user=remco --admin_password=kaas --admin_email=rpet@student.codam.nl --skip-email
 wp user create author author@example.com --role=author --user_pass=kaas
 wp user create subscriber subscriber@example.com --role=subscriber --user_pass=kaas
+
 php-fpm7
-nginx -g "daemon off;"
+nginx
+
+while true; do
+	sleep 5
+	ps | grep nginx | grep master
+	if [ $? == 1 ]; then break
+	fi
+	ps | grep php-fpm | grep master
+	if [ $? == 1 ]; then break
+	fi
+done

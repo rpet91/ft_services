@@ -55,5 +55,5 @@ kubectl apply -f srcs/grafana.yaml
 
 # Creating telegraf:
 
-#docker build -t my_telegraf srcs/telegraf/
-#kubectl apply -f srcs/telegraf.yaml
+docker build -t my_telegraf srcs/telegraf/
+kubectl apply -f srcs/telegraf.yaml

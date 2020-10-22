@@ -1,4 +1,6 @@
-php-fpm7
+ssh-keygen -A
+
+/usr/sbin/sshd
 nginx
 
 while true; do
@@ -6,7 +8,7 @@ while true; do
 	ps | grep nginx | grep master
 	if [ $? == 1 ]; then break
 	fi
-	ps | grep php-fpm | grep master
+	ps | grep sshd | grep listener
 	if [ $? == 1 ]; then break
 	fi
 done

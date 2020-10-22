@@ -27,7 +27,14 @@ spec:
         - name: DB_USER
           value: mysql
         - name: DB_PASS
-          value: kaas
+          value: kaas        
+        volumeMounts:
+        - name: mysql-persistent
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
 ---
 apiVersion: v1
 kind: Service
@@ -44,3 +51,16 @@ spec:
   - name: mysql
     port: 3306
   type: ClusterIP
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+  labels:
+    app: mysql
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
